@@ -1,6 +1,6 @@
 <template>
   <div class="container my-5 d-md-flex justify-content-center">
-    <div class="card col-md-5">
+    <div class="card col-md-5 shadow">
       <div class="card-body">
         <i class="fab fa-twitter d-block text-center display-1 my-3"></i>
         <!-- register an account -->
