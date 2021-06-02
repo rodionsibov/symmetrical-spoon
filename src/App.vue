@@ -197,7 +197,7 @@ export default {
       if (confirm("Are you sure you want to remove this tweet?")) {
         this.tweets.splice(index, 1);
         // remove the item also from the localStorage
-        localStorage.simpleTweetTweets = JSON.stringify(this.tweets)
+        localStorage.simpleTweetTweets = JSON.stringify(this.tweets);
       }
     },
   },
