@@ -80,15 +80,32 @@
                 class="form-control"
                 name="tweet"
                 id="tweet"
-                cols="30"
-                rows="10"
                 v-model="tweetMsg"
                 maxlength="200"
                 required
               ></textarea>
             </div>
-            <button type="submit" class="btn btn-primary">Tweet</button>
+            <div class="text-end">
+              <button type="submit" class="btn btn-primary mb-3">Tweet</button>
+            </div>
           </form>
+          <div class="card-tweets">
+            <section v-if="tweets.length > 0">
+              <h2>Tweets</h2>
+              <div v-for="(tweet, index) in tweets" :key="index" class="mb-3">
+                <p class="rounded p-2 m-0" style="background: #f0f0f0">
+                  {{ tweet.text }}
+                </p>
+                <div
+                  class="form-text d-flex align-items-center justify-content-end"
+                >
+                  <i class="fas fa-calendar-alt fa-sm d-block mx-1"></i
+                  >{{ tweet.date }}
+                </div>
+              </div>
+            </section>
+            <div v-else class="mb-5">No tweets to show</div>
+          </div>
         </div>
       </div>
     </div>
@@ -125,6 +142,10 @@ export default {
       this.userData = JSON.parse(
         localStorage.getItem("simpleTweetRegisteredUser")
       );
+    }
+    // parse all tweets from the localStorage
+    if (localStorage.getItem("simpleTweetTweets")) {
+      this.tweets = JSON.parse(localStorage.getItem("simpleTweetTweets"));
     }
   },
   methods: {
