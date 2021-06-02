@@ -97,10 +97,21 @@
                   {{ tweet.text }}
                 </p>
                 <div
-                  class="form-text d-flex align-items-center justify-content-end"
+                  class="form-text d-flex align-items-center justify-content-between"
                 >
-                  <i class="fas fa-calendar-alt fa-sm d-block mx-1"></i
-                  >{{ tweet.date }}
+                  <div class="d-flex align-items-center gap-1">
+                    <i class="fas fa-calendar-alt fa-sm fa-fw"></i>
+                    <span>
+                      {{ tweet.date }}
+                    </span>
+                  </div>
+                  <button
+                    @click="removeTweet(index)"
+                    title="Delete this tweet"
+                    class="text-danger btn p-0"
+                  >
+                    <i class="fas fa-trash fa-sm fa-fw"></i>
+                  </button>
                 </div>
               </div>
             </section>
@@ -181,6 +192,13 @@ export default {
       this.tweetMsg = "";
       // add to the localStorage the stringified tweet object
       localStorage.setItem("simpleTweetTweets", JSON.stringify(this.tweets));
+    },
+    removeTweet(index) {
+      if (confirm("Are you sure you want to remove this tweet?")) {
+        this.tweets.splice(index, 1);
+        // remove the item also from the localStorage
+        localStorage.simpleTweetTweets = JSON.stringify(this.tweets)
+      }
     },
   },
 };
