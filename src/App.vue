@@ -151,7 +151,15 @@ export default {
       this.password = "";
     },
     sendTweet() {
-      // store the tweet
+      // store the tweet in the tweets property
+      this.tweets.unshift({
+        text: this.tweetMsg,
+        date: new Date().toLocaleTimeString(),
+      });
+      // empty the tweetMsg property
+      this.tweetMsg = "";
+      // add to the localStorage the stringified tweet object
+      localStorage.setItem("simpleTweetTweets", JSON.stringify(this.tweets));
     },
   },
 };
