@@ -93,26 +93,10 @@
             <section v-if="tweets.length > 0">
               <h2>Tweets</h2>
               <div v-for="(tweet, index) in tweets" :key="index" class="mb-3">
-                <p class="rounded p-2 m-0" style="background: #f0f0f0">
-                  {{ tweet.text }}
-                </p>
-                <div
-                  class="form-text d-flex align-items-center justify-content-between"
-                >
-                  <div class="d-flex align-items-center gap-1">
-                    <i class="fas fa-calendar-alt fa-sm fa-fw"></i>
-                    <span>
-                      {{ tweet.date }}
-                    </span>
-                  </div>
-                  <button
-                    @click="removeTweet(index)"
-                    title="Delete this tweet"
-                    class="text-danger btn p-0"
-                  >
-                    <i class="fas fa-trash fa-sm fa-fw"></i>
-                  </button>
-                </div>
+                <TweetMessage
+                  :tweet="tweet"
+                  @remove-tweet="removeTweet(index)"
+                />
               </div>
             </section>
             <div v-else class="mb-5">No tweets to show</div>
@@ -124,9 +108,11 @@
 </template>
 
 <script>
+import TweetMessage from "@/components/TweetMessage.vue";
+
 export default {
   name: "App",
-  components: {},
+  components: { TweetMessage },
   data() {
     return {
       userData: {},
