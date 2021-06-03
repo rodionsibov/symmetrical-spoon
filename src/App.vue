@@ -147,6 +147,7 @@ export default {
   },
   methods: {
     registerAccount() {
+      this.registered = true;
       // record user details
       if (this.name !== "" && this.email !== "" && this.password !== "") {
         this.userData.userId = ++this.userId;
